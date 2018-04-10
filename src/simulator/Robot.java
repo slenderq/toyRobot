@@ -82,14 +82,42 @@ public class Robot {
 	
 	
 	void move() { //Moves the Robot in the correct direction
-		//TODO
+			
+			int newX = posX; //temporary Positions
+			int newY = posY;
+			
+			if (direction.equals("NORTH")) {
+				newY++; //moving one north
+			}else if (direction.equals("EAST")) {
+				newX++; //moving one east
+			}else if (direction.equals("SOUTH")) {
+				newY--; //moving one south
+			}else if (direction.equals("WEST")) {
+				newX--; //moving one west
+			}
+			
+			if(board.onBoard(newX, newY)) { // if the move is a valid move make the move
+				posX = newX;
+				posY = newY;
+			}
+			
 	}
 	
 	void turnLeft() { //Turns the robot left
-		//TODO
+		
+		//checking the direction and doing the turn
+		if (direction.equals("NORTH")) { direction = "WEST"; }
+		else if (direction.equals("WEST")) { direction = "SOUTH"; }
+		else if (direction.equals("SOUTH")) { direction = "EAST"; }
+		else if (direction.equals("EAST")) { direction = "NORTH"; }
+		
+		
 	}
 	void turnRight() {//Turns the robot right
-		//TODO
+		if (direction.equals("NORTH")) { direction = "EAST"; }
+		else if (direction.equals("EAST")) { direction = "SOUTH"; }
+		else if (direction.equals("SOUTH")) { direction = "WEST"; }
+		else if (direction.equals("WEST")) { direction = "NORTH"; }
 	}
 	
 
