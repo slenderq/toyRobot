@@ -10,7 +10,7 @@ public class Board {
 	
 	
 	boolean onBoard(int x, int y) { //a helper function that checks if a position is on the board
-		return false; 
+		return true; 
 	}
 	
 }
