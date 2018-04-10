@@ -13,15 +13,29 @@ public class Robot {
 	Board board;
 	
 	
-	public Robot(int x , int y, String direction,Board board) { //Constructor. Takes in a the direction of the robot and the coordinates 
-		this.direction = direction;
-		this.posX = x;
-		this.posY = y;
+	public Robot(Board board) { //Constructor. Takes in a the direction of the robot and the coordinates 
 		this.board = board;
 	}
 	
-	public String getDirection() { //Getter
-		return direction;
+	boolean isPlaced() { //function for clarity 
+		return (direction != null);
+	}
+	
+	void placeRobot(int x , int y, String direction) { //places robot on the board 
+		this.direction = direction;
+		this.posX = x;
+		this.posY = y;
+	}
+	
+
+	
+	void command(String str) { //This takes in string commands and does the action
+		
+	}
+	
+	
+	String report() { //reports the current status of the robot
+		return "";
 	}
 	
 	
