@@ -8,6 +8,12 @@ class RobotTest {
 	Board board = new Board(5,5);
 	Robot robot = new Robot(board);
 
+	
+	@Test
+	void testBadPlace() { //testing if out of bound placements work
+		robot.command("6,6,WEST"); //placing in the top left corner
+		assertEquals(false,robot.isPlaced());
+	}
 	@Test
 	void testPlaceRobot() { //testing to see if the robot is placing correctly and if the report function works
 		robot.placeRobot(0, 0, "NORTH"); 
@@ -15,9 +21,11 @@ class RobotTest {
 		assertEquals(0,robot.posX);
 		assertEquals(0,robot.posY);
 	}
+	
 
+	
 	@Test
-	void testCommand() { //testing to see if the commands acctually work
+	void testCommand() { //testing to see if the commands actually work
 		robot.command("PLACE 0,0,NORTH");
 		robot.command("MOVE");
 		robot.command("LEFT");
@@ -46,35 +54,61 @@ class RobotTest {
 		robot.placeRobot(0, 0, "NORTH"); 
 		robot.move();
 		assertEquals("0,1,NORTH",robot.report());
+				
+		
+	}
+	
+	
+	@Test
+	void testMoveEast() {
+		robot.placeRobot(3, 3, "EAST"); 
+		robot.move();
+		assertEquals("4,3,EAST",robot.report());
+				
+		
+	}
+	
+	@Test
+	void testMoveSouth() {
+		robot.placeRobot(3, 3, "SOUTH"); 
+		robot.move();
+		assertEquals("3,2,SOUTH",robot.report());
+				
+		
+	}
+	
+	@Test
+	void testMoveWest() {
+		robot.placeRobot(3, 3, "WEST"); 
+		robot.move();
+		assertEquals("2,3,WEST",robot.report());
+				
+		
 	}
 	
 	@Test
 	void testFailedMove() { //Does the robot walk off the board?
-		robot.placeRobot(0, 5, "WEST"); //placing in the top left corner
+		robot.placeRobot(0, 4, "WEST"); //placing in the top left corner
 		robot.move(); //trying to move into negative coordinates
 		robot.turnRight(); //face west
 		robot.move(); //trying to move past 5
-		assertEquals("0,5,NORTH",robot.report());
+		assertEquals("0,4,NORTH",robot.report());
 	}
 	
 	@Test
 	void testIsPlaced() {
 		assertEquals(robot.isPlaced(),false);
-		robot.placeRobot(0, 5, "WEST"); //placing in the top left corner
+		robot.placeRobot(0, 4, "WEST"); //placing in the top left corner
 		assertEquals(robot.isPlaced(),true);	
 	}
 	
 	@Test
 	void testDoublePlace() { //testing if you can place twice
-		robot.placeRobot(5, 5, "WEST"); 
+		robot.placeRobot(4, 4, "WEST"); 
 		robot.placeRobot(0, 0, "WEST"); 
 		assertEquals("0,0,WEST",robot.report());
 	}
-	@Test
-	void testBadPlace() { //testing if out of bound placements work
-		robot.placeRobot(6, 6, "WEST"); //placing in the top left corner
-		assertEquals(robot.isPlaced(),false);
-	}
+
 
 	@Test
 	void testTurnLeft() { 
@@ -119,5 +153,6 @@ class RobotTest {
 		assertEquals(board.onBoard(4, 4),true);
 		assertEquals(board.onBoard(4, 10),false);
 		assertEquals(board.onBoard(-4, 4),false);
+		assertEquals(board.onBoard(6,6),false);
 	}
 }

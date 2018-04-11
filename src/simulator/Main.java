@@ -13,6 +13,7 @@ public class Main {
 		Board board = new Board(5,5); // creating the 5x5 board
 		Robot robot = new Robot(board); //creating a robot for the problem
 		
+		//basic input loop for demo purposes 
 		
 		while(true) {
 
