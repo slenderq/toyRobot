@@ -20,7 +20,7 @@ public class Main {
 		
 		String n = reader.nextLine(); // Scans the next token of the input
 		
-		System.out.println(n); //echo for feedback
+
 		robot.command(n); //give the robot the command
 		
 
